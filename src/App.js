@@ -4,14 +4,27 @@ import './App.css';
 import Header from './components/Header';
 import Section from './components/Section';
 import Basket from './components/Basket';
+import Footer from './components/Footer';
 import data from './data';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// const for localStorage
+const cartFromLocalStorage = JSON.parse(localStorage.getItem('cart') || '[]');
+const cartNumberFromLocalStorage = JSON.parse(localStorage.getItem('cartNumber') || '[]') ;
 
 
 function App() {
 
   const { products } = data;
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(cartFromLocalStorage);
+
+  useEffect(() => {
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  },
+  [cartItems]
+  );
+
+
   const onAdd = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -38,11 +51,13 @@ function App() {
 
   return (
     <div className="App">
-      <Header></Header>
+      <Header countCartItems={cartItems.reduce((prev, curr) => prev + curr.qty,0)}></Header>
       <div>
         <Section onAdd={onAdd } products={products}></Section>
         <Basket onAdd={onAdd} onRemove={onRemove} cartItems={cartItems}></Basket>
       </div>
+
+      <Footer></Footer>
     </div>
   );
  }

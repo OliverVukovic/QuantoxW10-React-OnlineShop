@@ -2,6 +2,7 @@ import React from "react";
 
 
 export default function Header(props) {
+    const {countCartItems} = props;
 
     return (
         <header>
@@ -13,7 +14,13 @@ export default function Header(props) {
 
             <div className="right-side-header">
                 <a href="#/cart"><img className="add-shop-cart-img" src={`${process.env.PUBLIC_URL}/assets/images/add-to-cart-blue.png`} alt="add-to-cart-icon"/></a>
-                <div className="circle"></div>
+                <div>
+                    {''}
+                    {countCartItems? (
+                        <button className="circle">{countCartItems}</button>
+                    ) : ('')
+                    }
+                </div>
             </div>
         </header>
     );

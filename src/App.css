@@ -151,10 +151,7 @@ button {
   overflow: auto;
   display: none; 
 }
-.pop-up.active {
-  display: flex;
-  opacity: 1;
-} */
+ */
 
 position: absolute;
 top:10%;
@@ -163,6 +160,10 @@ width: 250px;
 background-color: lightgrey;
 padding-bottom: 20px;
 }
+/* .pop-up:active {
+  display: block;
+  opacity: 1;
+} */
 
 .modal {
   width: 250px;
@@ -226,6 +227,7 @@ footer {
   width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   padding: 25px;
   border-top: 2px solid darkblue;
   color: darkblue;
